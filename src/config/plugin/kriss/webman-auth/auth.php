@@ -3,7 +3,6 @@
 use Kriss\WebmanAuth\Authentication\FailureHandler\RedirectHandler;
 use Kriss\WebmanAuth\Authentication\Method\SessionMethod;
 use Kriss\WebmanAuth\Interfaces\IdentityRepositoryInterface;
-use Kriss\WebmanAuth\Interfaces\IdentityRepositoryWithTokenInterface;
 
 return [
     // 默认 guard
@@ -43,11 +42,11 @@ return [
             'identityRepository' => function () {
                 return new User();
             },
-            'authenticationMethod' => function (IdentityRepositoryWithTokenInterface $identityRepository) {
+            'authenticationMethod' => function (IdentityRepositoryInterface $identityRepository) {
                 // 通过 request 请求参数授权，默认 name 为 access-token，放在 get 或 post 里都可以
                 return new Kriss\WebmanAuth\Authentication\Method\RequestMethod($identityRepository);
                 // 通过 request header 授权，默认 name 为 X-Api-Key
-                //return new Kriss\WebmanAuth\Authentication\Method\RequestHeaderMethod($identityRepository);
+                //return new Kriss\WebmanAuth\Authentication\Method\HttpHeaderMethod($identityRepository);
             },
             'authenticationFailureHandler' => function () {
                 // 响应 401 http 状态码

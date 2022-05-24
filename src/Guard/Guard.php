@@ -8,7 +8,6 @@ use Kriss\WebmanAuth\Interfaces\AuthenticationMethodInterface;
 use Kriss\WebmanAuth\Interfaces\GuardInterface;
 use Kriss\WebmanAuth\Interfaces\IdentityInterface;
 use Kriss\WebmanAuth\Interfaces\IdentityRepositoryInterface;
-use Kriss\WebmanAuth\Interfaces\IdentityRepositoryWithTokenInterface;
 
 class Guard implements GuardInterface
 {
@@ -26,15 +25,12 @@ class Guard implements GuardInterface
         $this->config = array_merge($this->config, $config);
     }
 
-    /**
-     * @var IdentityRepositoryInterface|IdentityRepositoryWithTokenInterface|null
-     */
-    protected $identityRepository = null;
+    protected ?IdentityRepositoryInterface $identityRepository = null;
 
     /**
-     * @return IdentityRepositoryInterface|IdentityRepositoryWithTokenInterface
+     * @return IdentityRepositoryInterface
      */
-    protected function getIdentityRepository()
+    protected function getIdentityRepository(): IdentityRepositoryInterface
     {
         if ($this->identityRepository === null) {
             $this->identityRepository = call_user_func($this->config['identityRepository']);

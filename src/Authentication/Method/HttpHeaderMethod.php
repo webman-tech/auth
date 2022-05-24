@@ -2,21 +2,20 @@
 
 namespace Kriss\WebmanAuth\Authentication\Method;
 
-use Kriss\WebmanAuth\Guard\Guard;
 use Webman\Http\Request;
 
 /**
- * Session方式
+ * 请求头方式
  */
-class SessionMethod extends BaseMethod
+class HttpHeaderMethod extends BaseMethod
 {
-    protected string $name = Guard::SESSION_AUTH_ID;
+    protected string $name = 'X-Api-Key';
 
     /**
      * @inheritDoc
      */
     protected function getCredentials(Request $request): ?string
     {
-        return $request->session()->get($this->name);
+        return $request->header($this->name);
     }
 }

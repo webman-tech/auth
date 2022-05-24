@@ -3,10 +3,10 @@
 namespace app\model;
 
 use Kriss\WebmanAuth\Interfaces\IdentityInterface;
-use Kriss\WebmanAuth\Interfaces\IdentityRepositoryWithTokenInterface;
+use Kriss\WebmanAuth\Interfaces\IdentityRepositoryInterface;
 use support\Model;
 
-class User extends Model implements IdentityInterface, IdentityRepositoryWithTokenInterface
+class User extends Model implements IdentityInterface, IdentityRepositoryInterface
 {
     // 其他方法
 
@@ -29,7 +29,7 @@ class User extends Model implements IdentityInterface, IdentityRepositoryWithTok
     /**
      * @inheritDoc
      */
-    public function findIdentityByToken(string $token, string $type = null): ?IdentityInterface
+    public function findIdentity(string $token, string $type = null): ?IdentityInterface
     {
         return static::query()->where('access_token', $token)->first();
     }

@@ -8,9 +8,10 @@ namespace Kriss\WebmanAuth\Interfaces;
 interface IdentityRepositoryInterface
 {
     /**
-     * 根据 ID 查询用户
-     * @param string $id
+     * 根据 token 查询用户
+     * @param string $token token 或 id
+     * @param string|null $type token 类型
      * @return IdentityInterface|null
      */
-    public function findIdentity(string $id): ?IdentityInterface;
+    public function findIdentity(string $token, string $type = null): ?IdentityInterface;
 }

@@ -3,7 +3,6 @@
 use Kriss\WebmanAuth\Authentication\FailureHandler\RedirectHandler;
 use Kriss\WebmanAuth\Authentication\Method\SessionMethod;
 use Kriss\WebmanAuth\Interfaces\IdentityRepositoryInterface;
-use Kriss\WebmanAuth\Interfaces\IdentityRepositoryWithTokenInterface;
 
 return [
     'default' => 'user',
@@ -13,7 +12,7 @@ return [
             'identityRepository' => function () {
                 return new app\model\User();
             },
-            'authenticationMethod' => function (IdentityRepositoryWithTokenInterface $identityRepository) {
+            'authenticationMethod' => function (IdentityRepositoryInterface $identityRepository) {
                 return new Kriss\WebmanAuth\Authentication\Method\RequestMethod($identityRepository);
             },
             'authenticationFailureHandler' => function () {
