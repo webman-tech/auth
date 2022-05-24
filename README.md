@@ -11,6 +11,8 @@ Auth plugin for webman
   - [x] SessionMethod: session 认证
   - [x] RequestMethod: 请求参数认证，token 放在 query 或 post 中
   - [x] RequestHeaderMethod: 请求 Header 认证，token 放在 header 中
+  - [x] HttpBasicMethod: 请求 Basic 认证
+  - [x] HttpBearerMethod: 请求 Bearer 认证
 - [x] 多认证失败处理器
   - [x] RedirectHandler: 重定向处理器
   - [x] ResponseHandler: 响应 401 http status
