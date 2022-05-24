@@ -7,6 +7,9 @@ use Kriss\WebmanAuth\Interfaces\AuthenticationFailureHandlerInterface;
 use Webman\Http\Request;
 use Webman\Http\Response;
 
+/**
+ * 抛出异常处理器
+ */
 class ThrowExceptionHandler implements AuthenticationFailureHandlerInterface
 {
     /**

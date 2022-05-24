@@ -2,6 +2,7 @@
 
 namespace Kriss\WebmanAuth;
 
+use InvalidArgumentException;
 use Kriss\WebmanAuth\Guard\Guard;
 use Kriss\WebmanAuth\Interfaces\GuardInterface;
 
@@ -29,7 +30,12 @@ class AuthManager
      */
     protected function getConfig(string $name): array
     {
-        return config("plugin.kriss.webman-auth.auth.guards.{$name}");
+        $key = "plugin.kriss.webman-auth.auth.guards.{$name}";
+        $config = config($key);
+        if (!$config) {
+            throw new InvalidArgumentException($key . ' 未配置');
+        }
+        return $config;
     }
 
     /**
@@ -39,6 +45,10 @@ class AuthManager
     protected function createGuard(array $config): GuardInterface
     {
         $guardClass = $config['class'] ?? Guard::class;
-        return new $guardClass($config);
+        $guard = new $guardClass($config);
+        if (!$guard instanceof GuardInterface) {
+            throw new InvalidArgumentException('class 必须是 GuardInterface 的实现');
+        }
+        return $guard;
     }
 }

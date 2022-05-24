@@ -6,6 +6,9 @@ use Kriss\WebmanAuth\Interfaces\AuthenticationFailureHandlerInterface;
 use Webman\Http\Request;
 use Webman\Http\Response;
 
+/**
+ * 重定向处理器
+ */
 class RedirectHandler implements AuthenticationFailureHandlerInterface
 {
     protected string $redirectUrl;

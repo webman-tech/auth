@@ -7,6 +7,9 @@ use Kriss\WebmanAuth\Interfaces\IdentityInterface;
 use Kriss\WebmanAuth\Interfaces\IdentityRepositoryWithTokenInterface;
 use Webman\Http\Request;
 
+/**
+ * 请求头方式
+ */
 class RequestHeaderMethod implements AuthenticationMethodInterface
 {
     protected IdentityRepositoryWithTokenInterface $identityRepository;

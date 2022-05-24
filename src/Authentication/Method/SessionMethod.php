@@ -8,6 +8,9 @@ use Kriss\WebmanAuth\Interfaces\IdentityInterface;
 use Kriss\WebmanAuth\Interfaces\IdentityRepositoryInterface;
 use Webman\Http\Request;
 
+/**
+ * Session方式
+ */
 class SessionMethod implements AuthenticationMethodInterface
 {
     protected IdentityRepositoryInterface $identityRepository;

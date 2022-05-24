@@ -10,7 +10,7 @@ use Kriss\WebmanAuth\Interfaces\GuardInterface;
  */
 class Auth
 {
-    const REQUEST_INSTANCE_NAME = 'auth__';
+    const REQUEST_INSTANCE_NAME = 'auth_manager__';
 
     /**
      * @param $name

@@ -83,9 +83,30 @@ class Guard implements GuardInterface
     {
         $this->identity = $identity;
 
+        // session 模式下需要保存 session
         $authenticationMethod = $this->getAuthenticationMethod();
         if ($authenticationMethod instanceof SessionMethod || $this->config['sessionEnable']) {
-            $this->saveId($identity->getId());
+            $session = request()->session();
+            $session->set(static::SESSION_AUTH_ID, $this->getId());
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function logout(): void
+    {
+        if ($this->isGuest()) {
+            return;
+        }
+
+        $this->identity = null;
+
+        // session 模式下删除 session
+        $authenticationMethod = $this->getAuthenticationMethod();
+        if ($authenticationMethod instanceof SessionMethod || $this->config['sessionEnable']) {
+            $session = request()->session();
+            $session->delete(static::SESSION_AUTH_ID);
         }
     }
 
@@ -117,15 +138,5 @@ class Guard implements GuardInterface
     public function getId(): ?string
     {
         return $this->identity instanceof IdentityInterface ? $this->identity->getId() : null;
-    }
-
-    /**
-     * @param string $id
-     * @return void
-     */
-    protected function saveId(string $id): void
-    {
-        $session = request()->session();
-        $session->set(static::SESSION_AUTH_ID, $id);
     }
 }

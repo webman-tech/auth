@@ -6,6 +6,9 @@ use Kriss\WebmanAuth\Interfaces\AuthenticationFailureHandlerInterface;
 use Webman\Http\Request;
 use Webman\Http\Response;
 
+/**
+ * Response 返回内容处理器
+ */
 class ResponseHandler implements AuthenticationFailureHandlerInterface
 {
     /**
