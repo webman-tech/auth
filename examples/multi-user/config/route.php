@@ -10,7 +10,8 @@ Route::group('/admin', function () {
     Route::get('/auth/info', [app\admin\controller\AuthController::class, 'info']);
     Route::post('/auth/logout', [app\admin\controller\AuthController::class, 'logout']);
 })->middleware([
-    app\middleware\AuthenticateAdmin::class,
+    app\middleware\SetAuthGuardAdmin::class,
+    Kriss\WebmanAuth\Middleware\Authentication::class,
 ]);
 
 // api 路由

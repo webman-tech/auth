@@ -20,7 +20,7 @@ class AuthController
             throw new \InvalidArgumentException('帐号或密码错误');
         }
         // 登录
-        Auth::guard('admin')->login($user);
+        Auth::guard()->login($user);
 
         return json($user);
     }
@@ -28,11 +28,11 @@ class AuthController
     // 退出登录
     public function logout(): Response
     {
-        if (Auth::guard('admin')->isGuest()) {
+        if (Auth::guard()->isGuest()) {
             return json('guest');
         }
 
-        Auth::guard('admin')->logout();
+        Auth::guard()->logout();
 
         return json('logout');
     }
@@ -40,6 +40,6 @@ class AuthController
     // 获取用户信息
     public function info(): Response
     {
-        return json(Auth::guard('admin')->getUser());
+        return json(Auth::guard()->getUser());
     }
 }

@@ -49,9 +49,10 @@ $guard->isGuest(); // 判断当前用户是否为游客
 
 其他方法详见: [`GuardInterface`](src/Interfaces/GuardInterface.php)
 
-### 认证授权中间件
+### 中间件
 
-`Kriss\WebmanAuth\Middleware\Authentication`
+- 全局切换 Guard: `Kriss\WebmanAuth\Middleware\SetAuthGuard`
+- 认证授权: `Kriss\WebmanAuth\Middleware\Authentication`
 
 ## 扩展
 

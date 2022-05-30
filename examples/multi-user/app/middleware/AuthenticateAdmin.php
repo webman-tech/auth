@@ -2,17 +2,12 @@
 
 namespace app\middleware;
 
-use Kriss\WebmanAuth\Interfaces\GuardInterface;
-use Kriss\WebmanAuth\facade\Auth;
-use Kriss\WebmanAuth\Middleware\Authentication;
+use Kriss\WebmanAuth\Middleware\SetAuthGuard;
 
-class AuthenticateAdmin extends Authentication
+class SetAuthGuardAdmin extends SetAuthGuard
 {
-    /**
-     * @inheritDoc
-     */
-    public function getGuard(): GuardInterface
+    public function __construct()
     {
-        return Auth::guard('admin');
+        parent::__construct('admin');
     }
 }
