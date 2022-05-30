@@ -6,7 +6,7 @@ use Kriss\WebmanAuth\AuthManager;
 use Kriss\WebmanAuth\Interfaces\GuardInterface;
 
 /**
- * @method static GuardInterface guard(string $name = null)
+ * @method static GuardInterface|null guard(string $name = null)
  */
 class Auth
 {
@@ -15,15 +15,18 @@ class Auth
     /**
      * @param $name
      * @param $arguments
-     * @return mixed
+     * @return GuardInterface|null
      */
     public static function __callStatic($name, $arguments)
     {
         $request = request();
+        if (!$request) {
+            return null;
+        }
         if (!$request->{static::REQUEST_INSTANCE_NAME}) {
             $request->{static::REQUEST_INSTANCE_NAME} = new AuthManager();
         }
 
-        return $request->{static::REQUEST_INSTANCE_NAME}->{$name}(... $arguments);
+        return $request->{static::REQUEST_INSTANCE_NAME}->{$name}(...$arguments);
     }
 }
