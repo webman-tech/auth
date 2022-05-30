@@ -5,7 +5,9 @@ use Webman\Route;
 // admin 路由
 Route::group('/admin', function () {
     Route::post('/auth/login', [app\admin\controller\AuthController::class, 'login']);
-});
+})->middleware([
+    app\middleware\SetAuthGuardAdmin::class,
+]);
 Route::group('/admin', function () {
     Route::get('/auth/info', [app\admin\controller\AuthController::class, 'info']);
     Route::post('/auth/logout', [app\admin\controller\AuthController::class, 'logout']);
