@@ -2,7 +2,7 @@
 
 namespace Kriss\WebmanAuth\Middleware;
 
-use Kriss\WebmanAuth\facade\Auth;
+use Kriss\WebmanAuth\Auth;
 use Kriss\WebmanAuth\Interfaces\GuardInterface;
 use Kriss\WebmanAuth\Interfaces\IdentityInterface;
 use Webman\Http\Request;

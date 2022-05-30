@@ -35,7 +35,7 @@ composer require kriss/webman-auth
 ### 认证授权方法
 
 ```php
-use Kriss\WebmanAuth\facade\Auth;
+use Kriss\WebmanAuth\Auth;
 
 $guard = Auth::guard(); // 获取默认的 guard
 $guard = Auth::guard('admin'); // 获取指定名称的 guard
