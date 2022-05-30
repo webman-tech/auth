@@ -12,7 +12,7 @@ use Webman\MiddlewareInterface;
 /**
  * 授权认证中间件
  */
-abstract class Authentication implements MiddlewareInterface
+class Authentication implements MiddlewareInterface
 {
     /**
      * @inheritDoc
