@@ -15,6 +15,7 @@ Auth plugin for webman
   - [x] HttpBasicMethod: 请求 Basic 认证
   - [x] HttpBearerMethod: 请求 Bearer 认证
   - [x] TinywanJwtMethod: 使用 [tinywan/jwt](https://github.com/Tinywan/webman-jwt) 进行 jwt 认证
+  - [x] CompositeMethod: 组合以上多种认证方式
 - [x] 多认证失败处理器
   - [x] RedirectHandler: 重定向处理器
   - [x] ResponseHandler: 响应 401 http status
