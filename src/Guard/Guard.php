@@ -65,7 +65,7 @@ class Guard implements GuardInterface
     public function getAuthenticationFailedHandler(): AuthenticationFailureHandlerInterface
     {
         if ($this->authenticationFailureHandler === null) {
-            $this->authenticationFailureHandler = call_user_func($this->config['authenticationFailureHandler']);
+            $this->authenticationFailureHandler = call_user_func($this->config['authenticationFailureHandler'], $this->getAuthenticationMethod());
         }
         return $this->authenticationFailureHandler;
     }
