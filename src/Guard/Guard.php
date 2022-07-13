@@ -2,6 +2,7 @@
 
 namespace Kriss\WebmanAuth\Guard;
 
+use Kriss\WebmanAuth\Authentication\Method\CompositeMethod;
 use Kriss\WebmanAuth\Authentication\Method\SessionMethod;
 use Kriss\WebmanAuth\Interfaces\AuthenticationFailureHandlerInterface;
 use Kriss\WebmanAuth\Interfaces\AuthenticationMethodInterface;
@@ -79,9 +80,7 @@ class Guard implements GuardInterface
     {
         $this->identity = $identity;
 
-        // session 模式下需要保存 session
-        $authenticationMethod = $this->getAuthenticationMethod();
-        if ($authenticationMethod instanceof SessionMethod || $this->config['sessionEnable']) {
+        if ($this->isSessionEnable()) {
             $session = request()->session();
             $session->set(static::SESSION_AUTH_ID, $this->getId());
         }
@@ -98,12 +97,40 @@ class Guard implements GuardInterface
 
         $this->identity = null;
 
-        // session 模式下删除 session
-        $authenticationMethod = $this->getAuthenticationMethod();
-        if ($authenticationMethod instanceof SessionMethod || $this->config['sessionEnable']) {
+        if ($this->isSessionEnable()) {
             $session = request()->session();
             $session->delete(static::SESSION_AUTH_ID);
         }
+    }
+
+    protected ?bool $isSessionEnable = null;
+
+    /**
+     * 是否允许 session
+     * @return bool
+     */
+    protected function isSessionEnable(): bool
+    {
+        if ($this->isSessionEnable !== null) {
+            return $this->isSessionEnable;
+        }
+
+        $sessionEnable = $this->config['sessionEnable'];
+        if ($sessionEnable) {
+            return $this->isSessionEnable = true;
+        }
+        $authenticationMethod = $this->getAuthenticationMethod();
+        if ($authenticationMethod instanceof SessionMethod) {
+            return $this->isSessionEnable = true;
+        }
+        if ($authenticationMethod instanceof CompositeMethod) {
+            foreach ($authenticationMethod->getMethods() as $method) {
+                if ($method instanceof SessionMethod) {
+                    return $this->isSessionEnable = true;
+                }
+            }
+        }
+        return $this->isSessionEnable = false;
     }
 
     /**

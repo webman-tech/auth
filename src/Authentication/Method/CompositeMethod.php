@@ -35,4 +35,12 @@ class CompositeMethod implements AuthenticationMethodInterface
         }
         return null;
     }
+
+    /**
+     * @return AuthenticationMethodInterface[]
+     */
+    public function getMethods(): array
+    {
+        return $this->methods;
+    }
 }
