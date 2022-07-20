@@ -8,7 +8,7 @@ use Kriss\WebmanAuth\Interfaces\IdentityInterface;
 use Webman\Http\Request;
 use Webman\Http\Response;
 use Webman\MiddlewareInterface;
-use Webman\Route;
+use Webman\Route\Route;
 
 /**
  * 授权认证中间件
