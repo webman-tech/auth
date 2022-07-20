@@ -8,6 +8,7 @@ use Kriss\WebmanAuth\Interfaces\IdentityInterface;
 use Webman\Http\Request;
 use Webman\Http\Response;
 use Webman\MiddlewareInterface;
+use Webman\Route;
 
 /**
  * 授权认证中间件
@@ -48,6 +49,12 @@ class Authentication implements MiddlewareInterface
      */
     protected function isOptionalRoute(Request $request): bool
     {
+        if ($request->route instanceof Route) {
+            $name = $request->route->getName();
+            if (in_array($name, $this->optionalRoutes())) {
+                return true;
+            }
+        }
         $path = $request->path();
         if (in_array($path, $this->optionalRoutes())) {
             return true;
@@ -59,6 +66,7 @@ class Authentication implements MiddlewareInterface
     /**
      * 当挂载了中间件，但是验证不通过时，此处配置的路由将会继续执行
      * 用于某些路由既可以登录也可以不登录访问，如果登录了需要获取用户信息的情况
+     * 支出路由的 name 和 path
      * @return array
      */
     protected function optionalRoutes(): array
