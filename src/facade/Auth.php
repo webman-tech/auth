@@ -1,10 +1,10 @@
 <?php
 
-namespace Kriss\WebmanAuth\facade;
+namespace WebmanTech\Auth\facade;
 
 /**
  * @deprecated
  */
-class Auth extends \Kriss\WebmanAuth\Auth
+class Auth extends \WebmanTech\Auth\Auth
 {
 }

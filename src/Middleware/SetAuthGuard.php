@@ -1,6 +1,6 @@
 <?php
 
-namespace Kriss\WebmanAuth\Middleware;
+namespace WebmanTech\Auth\Middleware;
 
 use Webman\Http\Request;
 use Webman\Http\Response;

@@ -2,7 +2,7 @@
 
 namespace app\middleware;
 
-use Kriss\WebmanAuth\Middleware\SetAuthGuard;
+use WebmanTech\Auth\Middleware\SetAuthGuard;
 
 class SetAuthGuardAdmin extends SetAuthGuard
 {

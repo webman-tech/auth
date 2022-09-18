@@ -1,9 +1,9 @@
 <?php
 
-namespace Kriss\WebmanAuth;
+namespace WebmanTech\Auth;
 
-use Kriss\WebmanAuth\Interfaces\GuardInterface;
-use Kriss\WebmanAuth\Middleware\SetAuthGuard;
+use WebmanTech\Auth\Interfaces\GuardInterface;
+use WebmanTech\Auth\Middleware\SetAuthGuard;
 
 class Auth
 {

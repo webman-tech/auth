@@ -1,9 +1,9 @@
 <?php
 
-namespace Kriss\WebmanAuth\Authentication\FailureHandler;
+namespace WebmanTech\Auth\Authentication\FailureHandler;
 
-use Kriss\WebmanAuth\Exceptions\UnauthorizedException;
-use Kriss\WebmanAuth\Interfaces\AuthenticationFailureHandlerInterface;
+use WebmanTech\Auth\Exceptions\UnauthorizedException;
+use WebmanTech\Auth\Interfaces\AuthenticationFailureHandlerInterface;
 use Webman\Http\Request;
 use Webman\Http\Response;
 

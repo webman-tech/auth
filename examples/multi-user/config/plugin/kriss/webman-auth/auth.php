@@ -1,26 +1,26 @@
 <?php
 
-use Kriss\WebmanAuth\Authentication\FailureHandler\RedirectHandler;
-use Kriss\WebmanAuth\Authentication\Method\SessionMethod;
-use Kriss\WebmanAuth\Interfaces\IdentityRepositoryInterface;
+use WebmanTech\Auth\Authentication\FailureHandler\RedirectHandler;
+use WebmanTech\Auth\Authentication\Method\SessionMethod;
+use WebmanTech\Auth\Interfaces\IdentityRepositoryInterface;
 
 return [
     'default' => 'user',
     'guards' => [
         'user' => [
-            'class' => Kriss\WebmanAuth\Guard\Guard::class,
+            'class' => WebmanTech\Auth\Guard\Guard::class,
             'identityRepository' => function () {
                 return new app\model\User();
             },
             'authenticationMethod' => function (IdentityRepositoryInterface $identityRepository) {
-                return new Kriss\WebmanAuth\Authentication\Method\RequestMethod($identityRepository);
+                return new WebmanTech\Auth\Authentication\Method\RequestMethod($identityRepository);
             },
             'authenticationFailureHandler' => function () {
-                return new Kriss\WebmanAuth\Authentication\FailureHandler\ThrowExceptionHandler();
+                return new WebmanTech\Auth\Authentication\FailureHandler\ThrowExceptionHandler();
             },
         ],
         'admin' => [
-            'class' => Kriss\WebmanAuth\Guard\Guard::class,
+            'class' => WebmanTech\Auth\Guard\Guard::class,
             'identityRepository' => function () {
                 return new app\model\Admin();
             },

@@ -1,5 +1,5 @@
 {
-  "name": "kriss/webman-auth",
+  "name": "webman-tech/auth",
   "type": "library",
   "license": "MIT",
   "description": "webman auth plugin",
@@ -12,7 +12,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Kriss\\WebmanAuth\\": "src"
+      "WebmanTech\\Auth\\": "src"
     }
   },
   "autoload-dev": {

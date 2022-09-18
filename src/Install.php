@@ -1,5 +1,5 @@
 <?php
-namespace Kriss\WebmanAuth;
+namespace WebmanTech\Auth;
 
 class Install
 {
@@ -9,7 +9,7 @@ class Install
      * @var array
      */
     protected static $pathRelation = array (
-  'config/plugin/kriss/webman-auth' => 'config/plugin/kriss/webman-auth',
+  'config/plugin/webman-tech/auth' => 'config/plugin/webman-tech/auth',
 );
 
     /**

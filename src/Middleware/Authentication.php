@@ -1,10 +1,10 @@
 <?php
 
-namespace Kriss\WebmanAuth\Middleware;
+namespace WebmanTech\Auth\Middleware;
 
-use Kriss\WebmanAuth\Auth;
-use Kriss\WebmanAuth\Interfaces\GuardInterface;
-use Kriss\WebmanAuth\Interfaces\IdentityInterface;
+use WebmanTech\Auth\Auth;
+use WebmanTech\Auth\Interfaces\GuardInterface;
+use WebmanTech\Auth\Interfaces\IdentityInterface;
 use Webman\Http\Request;
 use Webman\Http\Response;
 use Webman\MiddlewareInterface;

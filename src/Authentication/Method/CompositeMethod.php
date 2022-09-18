@@ -1,9 +1,9 @@
 <?php
 
-namespace Kriss\WebmanAuth\Authentication\Method;
+namespace WebmanTech\Auth\Authentication\Method;
 
-use Kriss\WebmanAuth\Interfaces\AuthenticationMethodInterface;
-use Kriss\WebmanAuth\Interfaces\IdentityInterface;
+use WebmanTech\Auth\Interfaces\AuthenticationMethodInterface;
+use WebmanTech\Auth\Interfaces\IdentityInterface;
 use Webman\Http\Request;
 
 class CompositeMethod implements AuthenticationMethodInterface

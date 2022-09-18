@@ -3,7 +3,7 @@
 namespace app\admin\controller;
 
 use app\model\Admin;
-use Kriss\WebmanAuth\Auth;
+use WebmanTech\Auth\Auth;
 use support\Request;
 use support\Response;
 

@@ -1,8 +1,8 @@
 <?php
 
-use Kriss\WebmanAuth\Authentication\FailureHandler\RedirectHandler;
-use Kriss\WebmanAuth\Authentication\Method\SessionMethod;
-use Kriss\WebmanAuth\Interfaces\IdentityRepositoryInterface;
+use WebmanTech\Auth\Authentication\FailureHandler\RedirectHandler;
+use WebmanTech\Auth\Authentication\Method\SessionMethod;
+use WebmanTech\Auth\Interfaces\IdentityRepositoryInterface;
 
 return [
     // 默认 guard
@@ -10,7 +10,7 @@ return [
     // 多 guard 配置
     'guards' => [
         'user' => [
-            'class' => Kriss\WebmanAuth\Guard\Guard::class,
+            'class' => WebmanTech\Auth\Guard\Guard::class,
             'identityRepository' => function () {
                 //return new User();
             },
@@ -23,7 +23,7 @@ return [
         ],
         // session 的例子
         'example_use_session' => [
-            'class' => Kriss\WebmanAuth\Guard\Guard::class,
+            'class' => WebmanTech\Auth\Guard\Guard::class,
             'identityRepository' => function () {
                 return new User();
             },
@@ -38,21 +38,21 @@ return [
         ],
         // api 接口的例子
         'example_use_api_token' => [
-            'class' => Kriss\WebmanAuth\Guard\Guard::class,
+            'class' => WebmanTech\Auth\Guard\Guard::class,
             'identityRepository' => function () {
                 return new User();
             },
             'authenticationMethod' => function (IdentityRepositoryInterface $identityRepository) {
                 // 通过 request 请求参数授权，默认 name 为 access-token，放在 get 或 post 里都可以
-                return new Kriss\WebmanAuth\Authentication\Method\RequestMethod($identityRepository);
+                return new WebmanTech\Auth\Authentication\Method\RequestMethod($identityRepository);
                 // 通过 request header 授权，默认 name 为 X-Api-Key
-                //return new Kriss\WebmanAuth\Authentication\Method\HttpHeaderMethod($identityRepository);
+                //return new WebmanTech\Auth\Authentication\Method\HttpHeaderMethod($identityRepository);
             },
             'authenticationFailureHandler' => function () {
                 // 响应 401 http 状态码
-                //return new Kriss\WebmanAuth\Authentication\FailureHandler\ResponseHandler();
+                //return new WebmanTech\Auth\Authentication\FailureHandler\ResponseHandler();
                 // 抛出 401 异常，交给框架 ErrorHandler 处理，可以控制输出内容
-                return new Kriss\WebmanAuth\Authentication\FailureHandler\ThrowExceptionHandler();
+                return new WebmanTech\Auth\Authentication\FailureHandler\ThrowExceptionHandler();
             },
         ]
     ]

@@ -1,6 +1,6 @@
 <?php
 
-namespace Kriss\WebmanAuth\Exceptions;
+namespace WebmanTech\Auth\Exceptions;
 
 use Exception;
 

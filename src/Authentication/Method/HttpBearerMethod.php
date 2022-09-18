@@ -1,6 +1,6 @@
 <?php
 
-namespace Kriss\WebmanAuth\Authentication\Method;
+namespace WebmanTech\Auth\Authentication\Method;
 
 /**
  * Http Bearer 认证

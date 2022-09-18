@@ -13,7 +13,7 @@ Route::group('/admin', function () {
     Route::post('/auth/logout', [app\admin\controller\AuthController::class, 'logout']);
 })->middleware([
     app\middleware\SetAuthGuardAdmin::class,
-    Kriss\WebmanAuth\Middleware\Authentication::class,
+    WebmanTech\Auth\Middleware\Authentication::class,
 ]);
 
 // api 路由
@@ -24,5 +24,5 @@ Route::group('/api', function () {
     Route::get('/auth/info', [app\api\controller\AuthController::class, 'info']);
     Route::post('/auth/logout', [app\api\controller\AuthController::class, 'logout']);
 })->middleware([
-    Kriss\WebmanAuth\Middleware\Authentication::class,
+    WebmanTech\Auth\Middleware\Authentication::class,
 ]);

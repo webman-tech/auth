@@ -1,14 +1,14 @@
 <?php
 
-namespace Kriss\WebmanAuth\Guard;
+namespace WebmanTech\Auth\Guard;
 
-use Kriss\WebmanAuth\Authentication\Method\CompositeMethod;
-use Kriss\WebmanAuth\Authentication\Method\SessionMethod;
-use Kriss\WebmanAuth\Interfaces\AuthenticationFailureHandlerInterface;
-use Kriss\WebmanAuth\Interfaces\AuthenticationMethodInterface;
-use Kriss\WebmanAuth\Interfaces\GuardInterface;
-use Kriss\WebmanAuth\Interfaces\IdentityInterface;
-use Kriss\WebmanAuth\Interfaces\IdentityRepositoryInterface;
+use WebmanTech\Auth\Authentication\Method\CompositeMethod;
+use WebmanTech\Auth\Authentication\Method\SessionMethod;
+use WebmanTech\Auth\Interfaces\AuthenticationFailureHandlerInterface;
+use WebmanTech\Auth\Interfaces\AuthenticationMethodInterface;
+use WebmanTech\Auth\Interfaces\GuardInterface;
+use WebmanTech\Auth\Interfaces\IdentityInterface;
+use WebmanTech\Auth\Interfaces\IdentityRepositoryInterface;
 
 class Guard implements GuardInterface
 {

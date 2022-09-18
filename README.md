@@ -1,4 +1,4 @@
-# kriss/webman-auth
+# webman-tech/auth
 
 Auth plugin for webman
 
@@ -24,19 +24,19 @@ Auth plugin for webman
 ## 安装
 
 ```bash
-composer require kriss/webman-auth
+composer require webman-tech/auth
 ```
 
 ## 配置
 
-详见： [auth.php](src/config/plugin/kriss/webman-auth/auth.php)
+详见： [auth.php](src/config/plugin/webman-tech/auth/auth.php)
 
 ## 使用
 
 ### 认证授权方法
 
 ```php
-use Kriss\WebmanAuth\Auth;
+use WebmanTech\Auth\Auth;
 
 $guard = Auth::guard(); // 获取默认的 guard
 $guard = Auth::guard('admin'); // 获取指定名称的 guard
@@ -52,8 +52,8 @@ $guard->isGuest(); // 判断当前用户是否为游客
 
 ### 中间件
 
-- 全局切换 Guard: `Kriss\WebmanAuth\Middleware\SetAuthGuard`
-- 认证授权: `Kriss\WebmanAuth\Middleware\Authentication`
+- 全局切换 Guard: `WebmanTech\Auth\Middleware\SetAuthGuard`
+- 认证授权: `WebmanTech\Auth\Middleware\Authentication`
 
 ## 扩展
 

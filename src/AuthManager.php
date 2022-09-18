@@ -1,10 +1,10 @@
 <?php
 
-namespace Kriss\WebmanAuth;
+namespace WebmanTech\Auth;
 
 use InvalidArgumentException;
-use Kriss\WebmanAuth\Guard\Guard;
-use Kriss\WebmanAuth\Interfaces\GuardInterface;
+use WebmanTech\Auth\Guard\Guard;
+use WebmanTech\Auth\Interfaces\GuardInterface;
 
 class AuthManager
 {
@@ -16,7 +16,7 @@ class AuthManager
      */
     public function guard(string $name = null): GuardInterface
     {
-        $name = $name ?? config('plugin.kriss.webman-auth.auth.default');
+        $name = $name ?? config('plugin.webman-tech.auth.auth.default');
         if (!isset($this->guards[$name])) {
             $this->guards[$name] = $this->createGuard($this->getConfig($name));
         }
@@ -30,7 +30,7 @@ class AuthManager
      */
     protected function getConfig(string $name): array
     {
-        $key = "plugin.kriss.webman-auth.auth.guards.{$name}";
+        $key = "plugin.webman-tech.auth.auth.guards.{$name}";
         $config = config($key);
         if (!$config) {
             throw new InvalidArgumentException($key . ' 未配置');

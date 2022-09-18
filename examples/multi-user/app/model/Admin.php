@@ -2,8 +2,8 @@
 
 namespace app\model;
 
-use Kriss\WebmanAuth\Interfaces\IdentityInterface;
-use Kriss\WebmanAuth\Interfaces\IdentityRepositoryInterface;
+use WebmanTech\Auth\Interfaces\IdentityInterface;
+use WebmanTech\Auth\Interfaces\IdentityRepositoryInterface;
 use support\Model;
 
 class Admin extends Model implements IdentityInterface, IdentityRepositoryInterface

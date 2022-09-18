@@ -1,9 +1,9 @@
 <?php
 
-namespace Kriss\WebmanAuth\Authentication\Method;
+namespace WebmanTech\Auth\Authentication\Method;
 
 use InvalidArgumentException;
-use Kriss\WebmanAuth\Interfaces\IdentityRepositoryInterface;
+use WebmanTech\Auth\Interfaces\IdentityRepositoryInterface;
 use Tinywan\Jwt\Exception\JwtTokenException;
 use Tinywan\Jwt\JwtToken;
 use Webman\Http\Request;

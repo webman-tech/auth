@@ -1,6 +1,6 @@
 <?php
 
-namespace Kriss\WebmanAuth\Interfaces;
+namespace WebmanTech\Auth\Interfaces;
 
 use Webman\Http\Request;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace Kriss\WebmanAuth\Authentication\Method;
+namespace WebmanTech\Auth\Authentication\Method;
 
-use Kriss\WebmanAuth\Guard\Guard;
+use WebmanTech\Auth\Guard\Guard;
 use Webman\Http\Request;
 
 /**

@@ -1,10 +1,10 @@
 <?php
 
-namespace Kriss\WebmanAuth\Authentication\Method;
+namespace WebmanTech\Auth\Authentication\Method;
 
-use Kriss\WebmanAuth\Interfaces\AuthenticationMethodInterface;
-use Kriss\WebmanAuth\Interfaces\IdentityInterface;
-use Kriss\WebmanAuth\Interfaces\IdentityRepositoryInterface;
+use WebmanTech\Auth\Interfaces\AuthenticationMethodInterface;
+use WebmanTech\Auth\Interfaces\IdentityInterface;
+use WebmanTech\Auth\Interfaces\IdentityRepositoryInterface;
 use Webman\Http\Request;
 
 abstract class BaseMethod implements AuthenticationMethodInterface
