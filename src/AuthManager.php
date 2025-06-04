@@ -14,7 +14,7 @@ class AuthManager
      * @param string|null $name
      * @return GuardInterface
      */
-    public function guard(string $name = null): GuardInterface
+    public function guard(?string $name = null): GuardInterface
     {
         $name = $name ?? config('plugin.webman-tech.auth.auth.default');
         if (!isset($this->guards[$name])) {
