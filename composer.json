@@ -1,0 +1,22 @@
+{
+  "name": "webman-tech/auth",
+  "type": "library",
+  "license": "MIT",
+  "description": "webman auth plugin",
+  "autoload": {
+    "psr-4": {
+      "WebmanTech\\Auth\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "app\\": "examples\\multi-user\\app"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "require": {
+    "php": "^8.2"
+  }
+}
