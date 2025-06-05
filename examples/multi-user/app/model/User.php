@@ -42,7 +42,7 @@ class User extends Model implements IdentityInterface, IdentityRepositoryInterfa
      * 刷新 token
      * @param false|string|null $token
      */
-    public function refreshToken($token = false)
+    public function refreshToken($token = false): void
     {
         if ($token === false) {
             $token = Str::random(32);
