@@ -2,10 +2,14 @@
 
 namespace app\model;
 
+use Illuminate\Support\Str;
+use support\Model;
 use WebmanTech\Auth\Interfaces\IdentityInterface;
 use WebmanTech\Auth\Interfaces\IdentityRepositoryInterface;
-use support\Model;
 
+/**
+ * @property string $access_token
+ */
 class User extends Model implements IdentityInterface, IdentityRepositoryInterface
 {
     // 其他方法

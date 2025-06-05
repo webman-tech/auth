@@ -25,7 +25,7 @@ return [
         'example_use_session' => [
             'class' => WebmanTech\Auth\Guard\Guard::class,
             'identityRepository' => function () {
-                return new User();
+                return new app\model\User();
             },
             'authenticationMethod' => function (IdentityRepositoryInterface $identityRepository) {
                 // 通过 session 认证
@@ -40,7 +40,7 @@ return [
         'example_use_api_token' => [
             'class' => WebmanTech\Auth\Guard\Guard::class,
             'identityRepository' => function () {
-                return new User();
+                return new app\model\User();
             },
             'authenticationMethod' => function (IdentityRepositoryInterface $identityRepository) {
                 // 通过 request 请求参数授权，默认 name 为 access-token，放在 get 或 post 里都可以

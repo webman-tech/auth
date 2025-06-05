@@ -2,9 +2,9 @@
 
 namespace app\model;
 
+use support\Model;
 use WebmanTech\Auth\Interfaces\IdentityInterface;
 use WebmanTech\Auth\Interfaces\IdentityRepositoryInterface;
-use support\Model;
 
 class Admin extends Model implements IdentityInterface, IdentityRepositoryInterface
 {
@@ -29,8 +29,8 @@ class Admin extends Model implements IdentityInterface, IdentityRepositoryInterf
     /**
      * @inheritDoc
      */
-    public function findIdentity(string $id): ?IdentityInterface
+    public function findIdentity(string $token, string $type = null): ?IdentityInterface
     {
-        return static::find($id);
+        return static::find($token);
     }
 }
