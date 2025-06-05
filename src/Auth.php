@@ -13,16 +13,16 @@ class Auth
      * guard
      * 当使用 Middleware/SetAuthGuard 后，可以获取到当前的 Guard
      * @param string|null $name
-     * @return GuardInterface|null
+     * @return GuardInterface
      */
-    public static function guard(string $name = null): ?GuardInterface
+    public static function guard(string $name = null): GuardInterface
     {
         if ($authManager = static::getAuthManager()) {
             /* @phpstan-ignore-next-line */
             $name = $name ?: request()->{SetAuthGuard::REQUEST_GUARD_NAME};
             return $authManager->guard($name);
         }
-        return null;
+        throw new \InvalidArgumentException('获取当前 guard 失败，请确认配置');
     }
 
     /**

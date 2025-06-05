@@ -13,9 +13,9 @@ class SetAuthGuard implements MiddlewareInterface
 {
     public const REQUEST_GUARD_NAME = 'auth_current_guard_name';
 
-    protected string $guardName;
+    protected ?string $guardName;
 
-    public function __construct(string $guardName = null)
+    public function __construct(?string $guardName = null)
     {
         $this->guardName = $guardName;
     }

@@ -8,7 +8,7 @@ use WebmanTech\Auth\Interfaces\IdentityInterface;
 use WebmanTech\Auth\Interfaces\IdentityRepositoryInterface;
 
 /**
- * @property string $access_token
+ * @property string|null $access_token
  */
 class User extends Model implements IdentityInterface, IdentityRepositoryInterface
 {

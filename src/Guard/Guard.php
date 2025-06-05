@@ -35,6 +35,9 @@ class Guard implements GuardInterface
     {
         if ($this->identityRepository === null) {
             $this->identityRepository = call_user_func($this->config['identityRepository']);
+            if (!$this->identityRepository instanceof IdentityRepositoryInterface) {
+                throw new \InvalidArgumentException('identityRepository must be IdentityRepositoryInterface');
+            }
         }
         return $this->identityRepository;
     }
@@ -51,6 +54,9 @@ class Guard implements GuardInterface
     {
         if ($this->authenticationMethod === null) {
             $this->authenticationMethod = call_user_func($this->config['authenticationMethod'], $this->getIdentityRepository());
+            if (!$this->authenticationMethod instanceof AuthenticationMethodInterface) {
+                throw new \InvalidArgumentException('authenticationMethod must be AuthenticationMethodInterface');
+            }
         }
         return $this->authenticationMethod;
     }
@@ -67,6 +73,9 @@ class Guard implements GuardInterface
     {
         if ($this->authenticationFailureHandler === null) {
             $this->authenticationFailureHandler = call_user_func($this->config['authenticationFailureHandler'], $this->getAuthenticationMethod());
+            if (!$this->authenticationFailureHandler instanceof AuthenticationFailureHandlerInterface) {
+                throw new \InvalidArgumentException('authenticationFailureHandler must be AuthenticationFailureHandlerInterface');
+            }
         }
         return $this->authenticationFailureHandler;
     }
@@ -81,6 +90,7 @@ class Guard implements GuardInterface
         $this->identity = $identity;
 
         if ($this->isSessionEnable()) {
+            /** @phpstan-ignore-next-line */
             $session = request()->session();
             $session->set(static::SESSION_AUTH_ID, $this->getId());
         }
@@ -98,6 +108,7 @@ class Guard implements GuardInterface
         $this->identity = null;
 
         if ($this->isSessionEnable()) {
+            /** @phpstan-ignore-next-line */
             $session = request()->session();
             $session->delete(static::SESSION_AUTH_ID);
         }
