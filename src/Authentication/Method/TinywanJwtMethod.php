@@ -3,10 +3,10 @@
 namespace WebmanTech\Auth\Authentication\Method;
 
 use InvalidArgumentException;
-use WebmanTech\Auth\Interfaces\IdentityRepositoryInterface;
 use Tinywan\Jwt\Exception\JwtTokenException;
 use Tinywan\Jwt\JwtToken;
 use Webman\Http\Request;
+use WebmanTech\Auth\Interfaces\IdentityRepositoryInterface;
 
 /**
  * tinywan/jwt 认证方式
@@ -31,6 +31,7 @@ class TinywanJwtMethod extends BaseMethod
     protected function getCredentials(Request $request): ?string
     {
         try {
+            /** @phpstan-ignore-next-line */
             return JwtToken::getCurrentId();
         } catch (JwtTokenException $e) {
             if ($this->throwException) {

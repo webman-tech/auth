@@ -13,10 +13,10 @@ class AuthController
     public function login(Request $request): Response
     {
         // 验证提交字段
-        $data = $request->post();
+        $data = (array)$request->post();
         // 查询用户
         $user = Admin::query()->where('username', $data['username'])->first();
-        if (!$user || $user->validatePassword($data['password'])) {
+        if (!$user || $user->validatePassword((string)$data['password'])) {
             throw new \InvalidArgumentException('帐号或密码错误');
         }
         // 登录

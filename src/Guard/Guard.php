@@ -34,10 +34,11 @@ class Guard implements GuardInterface
     protected function getIdentityRepository(): IdentityRepositoryInterface
     {
         if ($this->identityRepository === null) {
-            $this->identityRepository = call_user_func($this->config['identityRepository']);
-            if (!$this->identityRepository instanceof IdentityRepositoryInterface) {
+            $value = call_user_func($this->config['identityRepository']);
+            if (!$value instanceof IdentityRepositoryInterface) {
                 throw new \InvalidArgumentException('identityRepository must be IdentityRepositoryInterface');
             }
+            $this->identityRepository = $value;
         }
         return $this->identityRepository;
     }
@@ -53,10 +54,11 @@ class Guard implements GuardInterface
     public function getAuthenticationMethod(): AuthenticationMethodInterface
     {
         if ($this->authenticationMethod === null) {
-            $this->authenticationMethod = call_user_func($this->config['authenticationMethod'], $this->getIdentityRepository());
-            if (!$this->authenticationMethod instanceof AuthenticationMethodInterface) {
+            $value = call_user_func($this->config['authenticationMethod'], $this->getIdentityRepository());
+            if (!$value instanceof AuthenticationMethodInterface) {
                 throw new \InvalidArgumentException('authenticationMethod must be AuthenticationMethodInterface');
             }
+            $this->authenticationMethod = $value;
         }
         return $this->authenticationMethod;
     }
@@ -72,10 +74,11 @@ class Guard implements GuardInterface
     public function getAuthenticationFailedHandler(): AuthenticationFailureHandlerInterface
     {
         if ($this->authenticationFailureHandler === null) {
-            $this->authenticationFailureHandler = call_user_func($this->config['authenticationFailureHandler'], $this->getAuthenticationMethod());
-            if (!$this->authenticationFailureHandler instanceof AuthenticationFailureHandlerInterface) {
+            $value = call_user_func($this->config['authenticationFailureHandler'], $this->getAuthenticationMethod());
+            if (!$value instanceof AuthenticationFailureHandlerInterface) {
                 throw new \InvalidArgumentException('authenticationFailureHandler must be AuthenticationFailureHandlerInterface');
             }
+            $this->authenticationFailureHandler = $value;
         }
         return $this->authenticationFailureHandler;
     }

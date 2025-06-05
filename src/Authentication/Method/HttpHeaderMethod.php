@@ -16,6 +16,7 @@ class HttpHeaderMethod extends BaseMethod
      */
     protected function getCredentials(Request $request): ?string
     {
+        /** @phpstan-ignore-next-line */
         return $request->header($this->name);
     }
 }

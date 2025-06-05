@@ -17,7 +17,7 @@ class AuthManager
      */
     public function guard(?string $name = null): GuardInterface
     {
-        $name = $name ?? ConfigHelper::get(('auth.default'));
+        $name = $name ?? (string)ConfigHelper::get(('auth.default'));
         if (!isset($this->guards[$name])) {
             $this->guards[$name] = $this->createGuard($this->getConfig($name));
         }
@@ -31,7 +31,7 @@ class AuthManager
      */
     protected function getConfig(string $name): array
     {
-        $config = ConfigHelper::get("auth.guards.{$name}");
+        $config = (array)ConfigHelper::get("auth.guards.{$name}");
         if (!$config) {
             throw new InvalidArgumentException($name . 'not exist in auth.guards');
         }
