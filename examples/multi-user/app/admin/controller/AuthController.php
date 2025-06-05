@@ -3,9 +3,9 @@
 namespace app\admin\controller;
 
 use app\model\Admin;
-use WebmanTech\Auth\Auth;
 use support\Request;
 use support\Response;
+use WebmanTech\Auth\Auth;
 
 class AuthController
 {

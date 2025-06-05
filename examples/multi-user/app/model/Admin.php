@@ -33,4 +33,9 @@ class Admin extends Model implements IdentityInterface, IdentityRepositoryInterf
     {
         return static::find($token);
     }
+
+    public function validatePassword(string $password): bool
+    {
+        return true;
+    }
 }

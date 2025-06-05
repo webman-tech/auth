@@ -50,4 +50,9 @@ class User extends Model implements IdentityInterface, IdentityRepositoryInterfa
         $this->access_token = $token;
         $this->save();
     }
+
+    public function validatePassword(string $password): bool
+    {
+        return true;
+    }
 }

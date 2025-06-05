@@ -18,6 +18,7 @@ class Auth
     public static function guard(string $name = null): ?GuardInterface
     {
         if ($authManager = static::getAuthManager()) {
+            /* @phpstan-ignore-next-line */
             $name = $name ?: request()->{SetAuthGuard::REQUEST_GUARD_NAME};
             return $authManager->guard($name);
         }
