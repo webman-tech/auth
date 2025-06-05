@@ -31,6 +31,7 @@ class Admin extends Model implements IdentityInterface, IdentityRepositoryInterf
      */
     public function findIdentity(string $token, string $type = null): ?IdentityInterface
     {
+        /* @phpstan-ignore-next-line */
         return static::find($token);
     }
 
