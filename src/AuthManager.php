@@ -17,7 +17,7 @@ class AuthManager
      */
     public function guard(?string $name = null): GuardInterface
     {
-        $name = $name ?? (string)ConfigHelper::get(('auth.default'));
+        $name ??= (string)ConfigHelper::get(('auth.default'));
         if (!isset($this->guards[$name])) {
             $this->guards[$name] = $this->createGuard($this->getConfig($name));
         }

@@ -19,7 +19,7 @@ class HttpBasicMethod extends HttpAuthorizationMethod
     {
         if ($credentials = parent::getCredentials($request)) {
             $credentials = base64_decode($credentials);
-            if (strpos($credentials, ':') !== false) {
+            if (str_contains($credentials, ':')) {
                 return $credentials;
             }
         }

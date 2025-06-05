@@ -9,15 +9,13 @@ use Webman\Http\Request;
 
 abstract class BaseMethod implements AuthenticationMethodInterface
 {
-    protected IdentityRepositoryInterface $identityRepository;
     protected ?string $tokenType = null;
 
-    public function __construct(IdentityRepositoryInterface $identityRepository, array $config = [])
+    public function __construct(protected IdentityRepositoryInterface $identityRepository, array $config = [])
     {
         foreach ($config as $key => $value) {
             $this->{$key} = $value;
         }
-        $this->identityRepository = $identityRepository;
     }
 
     /**

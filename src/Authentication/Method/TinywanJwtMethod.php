@@ -20,7 +20,7 @@ class TinywanJwtMethod extends BaseMethod
     {
         parent::__construct($identity, $config);
 
-        if (!class_exists('Tinywan\Jwt\JwtToken')) {
+        if (!class_exists(\Tinywan\Jwt\JwtToken::class)) {
             throw new InvalidArgumentException('请先安装 tinywan/jwt: composer require tinywan/jwt');
         }
     }

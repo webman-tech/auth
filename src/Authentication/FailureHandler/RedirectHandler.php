@@ -11,11 +11,8 @@ use Webman\Http\Response;
  */
 class RedirectHandler implements AuthenticationFailureHandlerInterface
 {
-    protected string $redirectUrl;
-
-    public function __construct(string $redirectUrl)
+    public function __construct(protected string $redirectUrl)
     {
-        $this->redirectUrl = $redirectUrl;
     }
 
     /**

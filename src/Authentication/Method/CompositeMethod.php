@@ -8,12 +8,8 @@ use WebmanTech\Auth\Interfaces\IdentityInterface;
 
 class CompositeMethod implements AuthenticationMethodInterface
 {
-    protected array $methods;
-
-    public function __construct(array $methods)
+    public function __construct(protected array $methods)
     {
-        $this->methods = $methods;
-
         foreach ($this->methods as $method) {
             if (!$method instanceof AuthenticationMethodInterface) {
                 throw new \InvalidArgumentException('$method must be ' . AuthenticationMethodInterface::class);
