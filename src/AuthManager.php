@@ -4,6 +4,7 @@ namespace WebmanTech\Auth;
 
 use InvalidArgumentException;
 use WebmanTech\Auth\Guard\Guard;
+use WebmanTech\Auth\Helper\ConfigHelper;
 use WebmanTech\Auth\Interfaces\GuardInterface;
 
 class AuthManager
@@ -16,7 +17,7 @@ class AuthManager
      */
     public function guard(?string $name = null): GuardInterface
     {
-        $name = $name ?? config('plugin.webman-tech.auth.auth.default');
+        $name = $name ?? ConfigHelper::get(('auth.default'));
         if (!isset($this->guards[$name])) {
             $this->guards[$name] = $this->createGuard($this->getConfig($name));
         }
@@ -30,10 +31,9 @@ class AuthManager
      */
     protected function getConfig(string $name): array
     {
-        $key = "plugin.webman-tech.auth.auth.guards.{$name}";
-        $config = config($key);
+        $config = ConfigHelper::get("auth.guards.{$name}");
         if (!$config) {
-            throw new InvalidArgumentException($key . ' 未配置');
+            throw new InvalidArgumentException($name . 'not exist in auth.guards');
         }
         return $config;
     }
