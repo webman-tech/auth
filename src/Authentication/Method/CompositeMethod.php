@@ -2,20 +2,23 @@
 
 namespace WebmanTech\Auth\Authentication\Method;
 
+use Webman\Http\Request;
 use WebmanTech\Auth\Interfaces\AuthenticationMethodInterface;
 use WebmanTech\Auth\Interfaces\IdentityInterface;
-use Webman\Http\Request;
 
 class CompositeMethod implements AuthenticationMethodInterface
 {
-    /**
-     * @var AuthenticationMethodInterface[]
-     */
     protected array $methods;
 
     public function __construct(array $methods)
     {
         $this->methods = $methods;
+
+        foreach ($this->methods as $method) {
+            if (!$method instanceof AuthenticationMethodInterface) {
+                throw new \InvalidArgumentException('$method must be ' . AuthenticationMethodInterface::class);
+            }
+        }
     }
 
     /**
@@ -24,10 +27,6 @@ class CompositeMethod implements AuthenticationMethodInterface
     public function authenticate(Request $request): ?IdentityInterface
     {
         foreach ($this->methods as $method) {
-            if (!$method instanceof AuthenticationMethodInterface) {
-                throw new \InvalidArgumentException('$method must be ' . AuthenticationMethodInterface::class);
-            }
-
             $identity = $method->authenticate($request);
             if ($identity !== null) {
                 return $identity;

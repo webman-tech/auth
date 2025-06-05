@@ -2,13 +2,13 @@
 
 namespace WebmanTech\Auth\Middleware;
 
-use WebmanTech\Auth\Auth;
-use WebmanTech\Auth\Interfaces\GuardInterface;
-use WebmanTech\Auth\Interfaces\IdentityInterface;
 use Webman\Http\Request;
 use Webman\Http\Response;
 use Webman\MiddlewareInterface;
 use Webman\Route\Route;
+use WebmanTech\Auth\Auth;
+use WebmanTech\Auth\Interfaces\GuardInterface;
+use WebmanTech\Auth\Interfaces\IdentityInterface;
 
 /**
  * 授权认证中间件
@@ -49,6 +49,7 @@ class Authentication implements MiddlewareInterface
      */
     protected function isOptionalRoute(Request $request): bool
     {
+        /* @phpstan-ignore-next-line */
         if ($request->route instanceof Route) {
             $name = $request->route->getName();
             if (in_array($name, $this->optionalRoutes())) {
