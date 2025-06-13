@@ -15,7 +15,7 @@ class Auth
      * @param string|null $name
      * @return GuardInterface
      */
-    public static function guard(string $name = null): GuardInterface
+    public static function guard(?string $name = null): GuardInterface
     {
         if ($authManager = static::getAuthManager()) {
             /* @phpstan-ignore-next-line */

@@ -13,5 +13,5 @@ interface IdentityRepositoryInterface
      * @param string|null $type token 类型
      * @return IdentityInterface|null
      */
-    public function findIdentity(string $token, string $type = null): ?IdentityInterface;
+    public function findIdentity(string $token, ?string $type = null): ?IdentityInterface;
 }
