@@ -17,14 +17,19 @@ class SetAuthGuard implements MiddlewareInterface
     {
     }
 
+    public static function setGuardName(Request $request, ?string $guardName = null): void
+    {
+        if ($guardName) {
+            $request->{static::REQUEST_GUARD_NAME} = $guardName;
+        }
+    }
+
     /**
      * @inheritDoc
      */
     public function process(Request $request, callable $handler): Response
     {
-        if ($this->guardName) {
-            $request->{static::REQUEST_GUARD_NAME} = $this->guardName;
-        }
+        static::setGuardName($request, $this->guardName);
 
         return $handler($request);
     }

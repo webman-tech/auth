@@ -15,15 +15,27 @@ use WebmanTech\Auth\Interfaces\IdentityInterface;
  */
 class Authentication implements MiddlewareInterface
 {
+    public function __construct(protected ?string $guardName = null)
+    {
+    }
+
     /**
      * @inheritDoc
      */
     public function process(Request $request, callable $handler): Response
     {
+        if ($this->guardName !== null) {
+            SetAuthGuard::setGuardName($request, $this->guardName);
+        }
+
         $guard = $this->getGuard();
         $identity = $guard->getAuthenticationMethod()->authenticate($request);
         if ($identity instanceof IdentityInterface) {
             $guard->login($identity);
+            $result = $this->checkIdentity($identity);
+            if ($result instanceof Response) {
+                return $result;
+            }
             return $handler($request);
         }
         if ($this->isOptionalRoute($request)) {
@@ -73,5 +85,15 @@ class Authentication implements MiddlewareInterface
     protected function optionalRoutes(): array
     {
         return [];
+    }
+
+    /**
+     * 预留出来可以用来做用户信息检查
+     * @param IdentityInterface $identity
+     * @return Response|null
+     */
+    protected function checkIdentity(IdentityInterface $identity): ?Response
+    {
+        return null;
     }
 }
