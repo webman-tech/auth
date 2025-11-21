@@ -2,6 +2,8 @@
 
 namespace WebmanTech\Auth\Helper;
 
+use function WebmanTech\CommonUtils\config;
+
 /**
  * @internal
  */
