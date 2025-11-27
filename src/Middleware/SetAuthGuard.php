@@ -2,14 +2,14 @@
 
 namespace WebmanTech\Auth\Middleware;
 
-use Webman\Http\Request;
-use Webman\Http\Response;
-use Webman\MiddlewareInterface;
+use WebmanTech\CommonUtils\Middleware\BaseMiddleware;
+use WebmanTech\CommonUtils\Request;
+use WebmanTech\CommonUtils\Response;
 
 /**
  * 设置路由下的当前 auth 的 guardName
  */
-class SetAuthGuard implements MiddlewareInterface
+class SetAuthGuard extends BaseMiddleware
 {
     public const REQUEST_GUARD_NAME = 'auth_current_guard_name';
 
@@ -20,14 +20,16 @@ class SetAuthGuard implements MiddlewareInterface
     public static function setGuardName(Request $request, ?string $guardName = null): void
     {
         if ($guardName) {
-            $request->{static::REQUEST_GUARD_NAME} = $guardName;
+            $request->withCustomData([
+                static::REQUEST_GUARD_NAME => $guardName
+            ]);
         }
     }
 
     /**
      * @inheritDoc
      */
-    public function process(Request $request, callable $handler): Response
+    public function processRequest(Request $request, \Closure $handler): Response
     {
         static::setGuardName($request, $this->guardName);
 

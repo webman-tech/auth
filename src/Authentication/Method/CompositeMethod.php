@@ -2,9 +2,9 @@
 
 namespace WebmanTech\Auth\Authentication\Method;
 
-use Webman\Http\Request;
 use WebmanTech\Auth\Interfaces\AuthenticationMethodInterface;
 use WebmanTech\Auth\Interfaces\IdentityInterface;
+use WebmanTech\CommonUtils\Request;
 
 class CompositeMethod implements AuthenticationMethodInterface
 {

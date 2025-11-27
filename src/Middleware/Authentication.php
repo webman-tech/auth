@@ -2,18 +2,17 @@
 
 namespace WebmanTech\Auth\Middleware;
 
-use Webman\Http\Request;
-use Webman\Http\Response;
-use Webman\MiddlewareInterface;
-use Webman\Route\Route;
 use WebmanTech\Auth\Auth;
 use WebmanTech\Auth\Interfaces\GuardInterface;
 use WebmanTech\Auth\Interfaces\IdentityInterface;
+use WebmanTech\CommonUtils\Middleware\BaseMiddleware;
+use WebmanTech\CommonUtils\Request;
+use WebmanTech\CommonUtils\Response;
 
 /**
  * 授权认证中间件
  */
-class Authentication implements MiddlewareInterface
+class Authentication extends BaseMiddleware
 {
     public function __construct(protected ?string $guardName = null)
     {
@@ -22,7 +21,7 @@ class Authentication implements MiddlewareInterface
     /**
      * @inheritDoc
      */
-    public function process(Request $request, callable $handler): Response
+    public function processRequest(Request $request, \Closure $handler): Response
     {
         if ($this->guardName !== null) {
             SetAuthGuard::setGuardName($request, $this->guardName);
@@ -61,18 +60,21 @@ class Authentication implements MiddlewareInterface
      */
     protected function isOptionalRoute(Request $request): bool
     {
-        /* @phpstan-ignore-next-line */
-        if ($request->route instanceof Route) {
-            $name = $request->route->getName();
-            if (in_array($name, $this->optionalRoutes())) {
+        $checked = [$request->getPath()];
+        if ($route = $request->getRoute()) {
+            if ($name = $route->getName()) {
+                $checked[] = $name;
+            }
+            if ($path = $route->getPath()) {
+                $checked[] = $path;
+            }
+        }
+        foreach (array_unique($checked) as $item) {
+            if (in_array($item, $this->optionalRoutes())) {
                 return true;
             }
         }
-        $path = $request->path();
-        if (in_array($path, $this->optionalRoutes())) {
-            return true;
-        }
-
+        
         return false;
     }
 

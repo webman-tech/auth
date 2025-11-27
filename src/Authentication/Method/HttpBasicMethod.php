@@ -2,7 +2,7 @@
 
 namespace WebmanTech\Auth\Authentication\Method;
 
-use Webman\Http\Request;
+use WebmanTech\CommonUtils\Request;
 
 /**
  * Http Basic 验证方式

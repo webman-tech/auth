@@ -5,8 +5,8 @@ namespace WebmanTech\Auth\Authentication\Method;
 use InvalidArgumentException;
 use Tinywan\Jwt\Exception\JwtTokenException;
 use Tinywan\Jwt\JwtToken;
-use Webman\Http\Request;
 use WebmanTech\Auth\Interfaces\IdentityRepositoryInterface;
+use WebmanTech\CommonUtils\Request;
 
 /**
  * tinywan/jwt 认证方式

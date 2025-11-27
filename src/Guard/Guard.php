@@ -9,6 +9,7 @@ use WebmanTech\Auth\Interfaces\AuthenticationMethodInterface;
 use WebmanTech\Auth\Interfaces\GuardInterface;
 use WebmanTech\Auth\Interfaces\IdentityInterface;
 use WebmanTech\Auth\Interfaces\IdentityRepositoryInterface;
+use WebmanTech\CommonUtils\Session;
 
 class Guard implements GuardInterface
 {
@@ -93,9 +94,7 @@ class Guard implements GuardInterface
         $this->identity = $identity;
 
         if ($this->isSessionEnable()) {
-            /** @phpstan-ignore-next-line */
-            $session = request()->session();
-            $session->set(static::SESSION_AUTH_ID, $this->getId());
+            Session::getCurrent()->set(static::SESSION_AUTH_ID, $this->getId());
         }
     }
 
@@ -111,9 +110,7 @@ class Guard implements GuardInterface
         $this->identity = null;
 
         if ($this->isSessionEnable()) {
-            /** @phpstan-ignore-next-line */
-            $session = request()->session();
-            $session->delete(static::SESSION_AUTH_ID);
+            Session::getCurrent()->delete(static::SESSION_AUTH_ID);
         }
     }
 

@@ -5,7 +5,7 @@ namespace WebmanTech\Auth\Authentication\Method;
 use WebmanTech\Auth\Interfaces\AuthenticationMethodInterface;
 use WebmanTech\Auth\Interfaces\IdentityInterface;
 use WebmanTech\Auth\Interfaces\IdentityRepositoryInterface;
-use Webman\Http\Request;
+use WebmanTech\CommonUtils\Request;
 
 abstract class BaseMethod implements AuthenticationMethodInterface
 {

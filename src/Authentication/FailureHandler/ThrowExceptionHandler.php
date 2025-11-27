@@ -4,8 +4,8 @@ namespace WebmanTech\Auth\Authentication\FailureHandler;
 
 use WebmanTech\Auth\Exceptions\UnauthorizedException;
 use WebmanTech\Auth\Interfaces\AuthenticationFailureHandlerInterface;
-use Webman\Http\Request;
-use Webman\Http\Response;
+use WebmanTech\CommonUtils\Request;
+use WebmanTech\CommonUtils\Response;
 
 /**
  * 抛出异常处理器

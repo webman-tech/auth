@@ -3,8 +3,8 @@
 namespace WebmanTech\Auth\Authentication\FailureHandler;
 
 use WebmanTech\Auth\Interfaces\AuthenticationFailureHandlerInterface;
-use Webman\Http\Request;
-use Webman\Http\Response;
+use WebmanTech\CommonUtils\Request;
+use WebmanTech\CommonUtils\Response;
 
 /**
  * 重定向处理器
@@ -20,8 +20,8 @@ class RedirectHandler implements AuthenticationFailureHandlerInterface
      */
     public function handle(Request $request): Response
     {
-        return (new Response())
+        return Response::make()
             ->withStatus(302)
-            ->withHeader('Location', $this->redirectUrl);
+            ->withHeaders(['Location' => $this->redirectUrl]);
     }
 }

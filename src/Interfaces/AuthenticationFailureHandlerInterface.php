@@ -2,8 +2,8 @@
 
 namespace WebmanTech\Auth\Interfaces;
 
-use Webman\Http\Request;
-use Webman\Http\Response;
+use WebmanTech\CommonUtils\Request;
+use WebmanTech\CommonUtils\Response;
 
 /**
  * 授权失败处理器接口

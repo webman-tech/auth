@@ -2,8 +2,8 @@
 
 namespace WebmanTech\Auth\Authentication\Method;
 
-use Webman\Http\Request;
 use WebmanTech\Auth\Guard\Guard;
+use WebmanTech\CommonUtils\Request;
 
 /**
  * Session方式
@@ -17,7 +17,6 @@ class SessionMethod extends BaseMethod
      */
     protected function getCredentials(Request $request): ?string
     {
-        /** @phpstan-ignore-next-line */
-        return $request->session()->get($this->name);
+        return $request->getSession()->get($this->name);
     }
 }

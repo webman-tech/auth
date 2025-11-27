@@ -4,6 +4,7 @@ namespace WebmanTech\Auth;
 
 use WebmanTech\Auth\Interfaces\GuardInterface;
 use WebmanTech\Auth\Middleware\SetAuthGuard;
+use WebmanTech\CommonUtils\Request;
 
 class Auth
 {
@@ -18,8 +19,7 @@ class Auth
     public static function guard(?string $name = null): GuardInterface
     {
         if ($authManager = static::getAuthManager()) {
-            /* @phpstan-ignore-next-line */
-            $name = $name ?: request()->{SetAuthGuard::REQUEST_GUARD_NAME};
+            $name = $name ?: Request::getCurrent()?->getCustomData(SetAuthGuard::REQUEST_GUARD_NAME);
             return $authManager->guard($name);
         }
         throw new \InvalidArgumentException('获取当前 guard 失败，请确认配置');
@@ -30,13 +30,17 @@ class Auth
      */
     public static function getAuthManager(): ?AuthManager
     {
-        $request = request();
+        $request = Request::getCurrent();
         if (!$request) {
             return null;
         }
-        if (!$request->{static::REQUEST_AUTH_MANAGER}) {
-            $request->{static::REQUEST_AUTH_MANAGER} = new AuthManager();
+        $value = $request->getCustomData(static::REQUEST_AUTH_MANAGER);
+        if (!$value) {
+            $value = new AuthManager();
+            $request->withCustomData([
+                static::REQUEST_AUTH_MANAGER => $value,
+            ]);
         }
-        return $request->{static::REQUEST_AUTH_MANAGER};
+        return $value;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace WebmanTech\Auth\Authentication\Method;
 
-use Webman\Http\Request;
+use WebmanTech\CommonUtils\Request;
 
 /**
  * 请求头方式
@@ -16,7 +16,6 @@ class HttpHeaderMethod extends BaseMethod
      */
     protected function getCredentials(Request $request): ?string
     {
-        /** @phpstan-ignore-next-line */
         return $request->header($this->name);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace WebmanTech\Auth\Interfaces;
 
-use Webman\Http\Request;
+use WebmanTech\CommonUtils\Request;
 
 /**
  * 认证方法接口
