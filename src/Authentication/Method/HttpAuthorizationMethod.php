@@ -14,7 +14,7 @@ class HttpAuthorizationMethod extends BaseMethod
      */
     protected function getCredentials(Request $request): ?string
     {
-        $authorization = (string)$request->header($this->name) ?? '';
+        $authorization = $request->header($this->name) ?? '';
         if ($authorization && preg_match($this->pattern, $authorization, $matches)) {
             return $matches[1];
         }

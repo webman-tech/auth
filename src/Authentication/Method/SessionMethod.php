@@ -17,6 +17,6 @@ class SessionMethod extends BaseMethod
      */
     protected function getCredentials(Request $request): ?string
     {
-        return $request->getSession()->get($this->name);
+        return $request->getSession()?->get($this->name);
     }
 }
