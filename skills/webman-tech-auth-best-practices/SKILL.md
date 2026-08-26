@@ -1,6 +1,6 @@
 ---
 name: webman-tech-auth-best-practices
-description: webman-tech/auth 最佳实践。使用场景：用户配置认证授权时，给出明确的推荐写法。
+description: 多用户体系认证授权。触发：Guard 配置、Session/Bearer 认证、身份模型、中间件、跨框架认证、失败处理。
 ---
 
 # webman-tech/auth 最佳实践
