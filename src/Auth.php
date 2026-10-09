@@ -18,8 +18,9 @@ class Auth
      */
     public static function guard(?string $name = null): GuardInterface
     {
-        if ($authManager = static::getAuthManager()) {
-            $name = $name ?: Request::getCurrent()?->getCustomData(SetAuthGuard::REQUEST_GUARD_NAME);
+        $request = Request::getCurrent();
+        if ($request !== null && ($authManager = self::resolveAuthManager($request))) {
+            $name = $name ?: $request->getCustomData(SetAuthGuard::REQUEST_GUARD_NAME);
             return $authManager->guard($name);
         }
         throw new \InvalidArgumentException('获取当前 guard 失败，请确认配置');
@@ -30,8 +31,15 @@ class Auth
      */
     public static function getAuthManager(): ?AuthManager
     {
-        $request = Request::getCurrent();
-        if (!$request) {
+        return self::resolveAuthManager(Request::getCurrent());
+    }
+
+    /**
+     * 从请求上解析（或初始化）AuthManager
+     */
+    private static function resolveAuthManager(?Request $request): ?AuthManager
+    {
+        if ($request === null) {
             return null;
         }
         $value = $request->getCustomData(static::REQUEST_AUTH_MANAGER);

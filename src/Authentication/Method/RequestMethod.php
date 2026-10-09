@@ -9,6 +9,13 @@ use WebmanTech\CommonUtils\Request;
  */
 class RequestMethod extends BaseMethod
 {
+    /**
+     * requestMethod 别名映射（input 等价于 post，从请求数据中取值）
+     */
+    protected const METHOD_MAP = [
+        'input' => 'post',
+    ];
+
     protected string $name = 'access-token';
     protected string $requestMethod = 'input'; // get/post/header/cookie
 
@@ -17,10 +24,7 @@ class RequestMethod extends BaseMethod
      */
     protected function getCredentials(Request $request): ?string
     {
-        $methodsMap = [
-            'input' => 'post',
-        ];
-        $method = $methodsMap[$this->requestMethod] ?? $this->requestMethod;
+        $method = self::METHOD_MAP[$this->requestMethod] ?? $this->requestMethod;
 
         return $request->{$method}($this->name);
     }

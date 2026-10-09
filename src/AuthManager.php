@@ -12,12 +12,19 @@ class AuthManager
     protected array $guards = [];
 
     /**
+     * 默认 guard 名（实例内缓存）：同一实例内多次 guard(null) 时避免重复查 config
+     */
+    protected ?string $defaultGuardName = null;
+
+    /**
      * @param string|null $name
      * @return GuardInterface
      */
     public function guard(?string $name = null): GuardInterface
     {
-        $name ??= (string)ConfigHelper::get(('auth.default'));
+        if ($name === null) {
+            $name = $this->defaultGuardName ??= (string)ConfigHelper::get('auth.default');
+        }
         if (!isset($this->guards[$name])) {
             $this->guards[$name] = $this->createGuard($this->getConfig($name));
         }
